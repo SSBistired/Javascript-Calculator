@@ -1,0 +1,156 @@
+<!doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <title>Learning Coding In Lockdown</title>
+      <meta name="description" content="My first webpage">
+      <meta name="author" content="Sarah">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <style>
+        .button {
+          width: 70px;
+          text-align: center;
+          border-style: solid;
+          border-color: #48233C
+          padding: 8px; margin:8px;
+          background-color: white;
+        }
+        .button2 {
+        width: 80px;
+        border-style: solid;
+        border-color: white;
+
+        height: 120px;
+      }
+
+
+        .number {
+          border-color: #48233C;
+          color: #48233C;
+        }
+        .operator {
+          border-color: darkblue;
+          color: darkblue;
+        }
+        .display {
+          border-style: solid;
+          border-width: thick;
+          border-color: lightgrey;
+          width: 100px;
+          padding: 8px;
+          display: block;
+        }
+        .button:hover {
+          box-shadow: 5px 5px 2px 0px #40376E;
+        }
+        .button:active {
+          background-color: #36558F;
+        }
+
+        .grid-container {
+  display: grid;
+  grid-template-columns: 100px 100px 100px 100px;
+  grid-template-rows: 100px 100px:
+  grid-gap: 5px;
+  background-color: #D4E4BC;
+  padding: 1px;
+}
+      .grid-container2 {
+        display:grid;
+        grid-template-columns: 100px 100px 100px 100px;
+        grid-template-rows: 60px 60px ;
+        grid-gap: 5px;
+        background-color: #D4E4BC;
+        padding: 1px;
+      }
+
+
+
+      </style>
+    </head>
+    <body>
+      <div>
+          <h2>Formula</h2>
+          <div class="display" id="formula"></div>
+
+          <h2>Results</h2>
+          <div class="display" id="results"></div>
+        </div>
+
+        <div>
+          <div class="grid-container" style="grid-auto-flow: column;">
+          <div class="button operator" id ="plus" data-buttonvalue = "+">+</div>
+          <div class="button operator" id ="divide" data-buttonvalue = "/">/</div>
+          <div class="button operator" id ="minus" data-buttonvalue = "-" >-</div>
+          <div class="button operator" id="times"  data-buttonvalue = "*" >x</div>
+          <div class="button2" id="equals" onclick="makeItSo()" >Equals</div>
+          <div class="button" id="clear" onclick= "clearFunction()" >Clear</div>
+         </div>
+
+       <div class="grid-container2" style="grid-auto-flow: column;">
+        <div class="button number" data-buttonvalue="0">Zero</div>
+        <div class="button number" data-buttonvalue="1">One</div>
+        <div class="button number" data-buttonvalue="2">Two</div>
+        <div class="button number" data-buttonvalue="3">Three</div>
+        <div class="button number" data-buttonvalue="4">Four</div>
+        <div class="button number" data-buttonvalue="5">Five</div>
+        <div class="button number" data-buttonvalue="6">Six</div>
+        <div class="button number" data-buttonvalue="7">Seven</div>
+        <div class="button number" data-buttonvalue="8">Eight</div>
+        <div class="button number" data-buttonvalue="9">Nine</div>
+
+
+        <script>
+
+  function makeItSo()
+        {
+            let x = document.getElementById("formula").innerText
+            console.log ("eq hit");
+            console.log (document.getElementById("formula"))
+            let y = eval(x)
+            $("#results").append(y);
+        };
+
+var lastClick = "none"
+
+
+var buttonclickfn = function (a) {
+       var digit = $(this).attr("data-buttonvalue");
+       lastClick = "number" ;
+     console.log(digit); ///put to formula
+  document.getElementById("formula").innerHTML +=  digit;
+}
+
+
+
+var buttonclickfn2 = function (b) {
+var digit = $(this).attr("data-buttonvalue");
+if (lastClick == "number" || (lastClick == "none" && digit == "-") )
+{document.getElementById("formula").innerHTML += digit;
+}
+ else if (digit == "-" && lastClick == "operator")
+ {document.getElementById("formula").innerHTML += digit;
+   }
+
+   if (digit == "-") {
+     lastClick = "-"
+   }
+   else {lastClick = "operator"}
+
+      }
+
+
+function clearFunction (c) {
+  $("#formula").text("");
+  $("#results").text("");
+console.log("cleared");
+
+}
+
+
+ $(".number",).click(buttonclickfn); ///assings number button to fun
+$(".operator").click(buttonclickfn2); //assigns operators buttons to bcfun 2
+
+        </script>
+    </body>
+  </html>
